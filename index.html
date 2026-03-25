@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen - The Future of Video Editing</title>
+    <style>
+        /* NextGen Dark Professional Theme */
+        body { margin: 0; padding: 0; background-color: #121212; color: white; font-family: Arial, sans-serif; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+        
+        /* Top Header */
+        header { background-color: #1a1a1a; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
+        .logo { font-size: 24px; font-weight: bold; color: #00a8ff; letter-spacing: 1px; }
+        .export-btn { background-color: #00a8ff; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 14px; }
+        .export-btn:hover { background-color: #008be6; }
+
+        /* Main Workspace */
+        .workspace { display: flex; flex: 1; height: calc(100vh - 250px); }
+        
+        /* Left Panel - Tools */
+        .left-panel { width: 250px; background-color: #181818; border-right: 1px solid #333; padding: 15px; display: flex; flex-direction: column; gap: 10px; }
+        .tool-btn { background-color: #252525; color: white; border: none; padding: 12px; text-align: left; border-radius: 5px; cursor: pointer; }
+        .tool-btn:hover { background-color: #333; }
+        .upload-section { margin-top: 20px; border: 2px dashed #444; padding: 20px; text-align: center; border-radius: 10px; }
+        .upload-btn { background-color: transparent; color: #00a8ff; cursor: pointer; text-decoration: underline; }
+
+        /* Center Panel - Video Preview */
+        .center-preview { flex: 1; background-color: #0a0a0a; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        video { max-width: 100%; max-height: 100%; background-color: black; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.8); display: none; }
+        .no-video-text { color: #555; font-size: 18px; }
+
+        /* Right Panel - Properties */
+        .right-panel { width: 300px; background-color: #181818; border-left: 1px solid #333; padding: 15px; }
+        .prop-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+
+        /* Bottom Timeline */
+        .timeline { height: 200px; background-color: #1a1a1a; border-top: 1px solid #333; padding: 15px; }
+        .timeline-header { display: flex; gap: 10px; margin-bottom: 10px; }
+        .timeline-header button { background: #252525; color: white; border: none; padding: 5px 15px; border-radius: 4px; cursor: pointer; }
+        .track-area { height: 100px; background-color: #252525; border-radius: 5px; margin-top: 10px; display: flex; align-items: center; padding: 10px; color: #777; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">NextGen</div>
+        <button class="export-btn">Export Video</button>
+    </header>
+
+    <!-- Workspace -->
+    <div class="workspace">
+        <!-- Left Tools -->
+        <div class="left-panel">
+            <button class="tool-btn">📁 Media</button>
+            <button class="tool-btn">🎵 Audio</button>
+            <button class="tool-btn">T Text</button>
+            <button class="tool-btn">✨ Smart Tools (AI)</button>
+            
+            <div class="upload-section">
+                <p>Import Media</p>
+                <input type="file" id="uploadVideo" accept="video/*" style="display: none;">
+                <label for="uploadVideo" class="upload-btn">Click to Upload</label>
+            </div>
+        </div>
+
+        <!-- Center Video -->
+        <div class="center-preview">
+            <p class="no-video-text" id="noVideoText">Upload a video to start editing</p>
+            <video id="videoPlayer" controls></video>
+        </div>
+
+        <!-- Right Properties -->
+        <div class="right-panel">
+            <div class="prop-title">Speed / Audio Properties</div>
+            <p style="color: #777; font-size: 14px;">Select a clip in timeline to see options (Curve, Normal, Voice Changer) exactly like your screenshots.</p>
+        </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+        <div class="timeline-header">
+            <button>Split</button>
+            <button>Delete</button>
+        </div>
+        <div class="track-area">
+            Timeline Area - Video will appear here
+        </div>
+    </div>
+
+    <!-- AI Script for Video Playback -->
+    <script>
+        const uploader = document.getElementById('uploadVideo');
+        const player = document.getElementById('videoPlayer');
+        const noVideoText = document.getElementById('noVideoText');
+
+        uploader.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const fileURL = URL.createObjectURL(file);
+                player.src = fileURL;
+                player.style.display = 'block';
+                noVideoText.style.display = 'none';
+                player.play();
+            }
+        });
+    </script>
+</body>
+</html>
