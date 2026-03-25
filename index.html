@@ -10,272 +10,239 @@
         
         /* Header */
         header { background-color: #1e1e1e; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; height: 60px; box-sizing: border-box; }
-        .logo { font-size: 24px; font-weight: bold; color: #00a8ff; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
-        .export-btn { background-color: #00a8ff; color: white; border: none; padding: 8px 25px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px; transition: 0.3s; }
+        .logo { font-size: 24px; font-weight: bold; color: #00a8ff; letter-spacing: 1px; }
+        .export-btn { background-color: #00a8ff; color: white; border: none; padding: 8px 25px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s; }
         .export-btn:hover { background-color: #008be6; }
 
         /* Workspace Grid */
-        .workspace { display: flex; flex: 1; height: calc(100vh - 260px); }
+        .workspace { display: flex; flex: 1; height: calc(100vh - 300px); }
         
         /* Left Panel */
         .left-panel { width: 80px; background-color: #181818; border-right: 1px solid #333; display: flex; flex-direction: column; align-items: center; padding-top: 10px; gap: 15px; }
         .tool-icon { color: #888; font-size: 12px; display: flex; flex-direction: column; align-items: center; cursor: pointer; gap: 5px; }
         .tool-icon:hover, .tool-icon.active { color: #00a8ff; }
-        .tool-icon svg { width: 24px; height: 24px; fill: currentColor; }
 
-        /* Media Panel (Secondary Left) */
-        .media-panel { width: 250px; background-color: #1e1e1e; border-right: 1px solid #333; padding: 15px; overflow-y: auto; }
-        .upload-box { border: 2px dashed #444; border-radius: 8px; padding: 30px 10px; text-align: center; cursor: pointer; margin-top: 10px; transition: 0.3s; background: #252525; }
+        /* Media Panel */
+        .media-panel { width: 250px; background-color: #1e1e1e; border-right: 1px solid #333; padding: 15px; }
+        .upload-box { border: 2px dashed #444; border-radius: 8px; padding: 30px 10px; text-align: center; cursor: pointer; background: #252525; transition: 0.3s; }
         .upload-box:hover { border-color: #00a8ff; background: #2a2a2a; }
         .upload-box label { cursor: pointer; color: #00a8ff; font-weight: bold; }
 
         /* Center Preview */
         .center-preview { flex: 1; background-color: #0a0a0a; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; position: relative; }
-        video { width: 80%; max-height: 80%; background-color: black; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5); display: none; border: 2px solid #333; }
-        .player-controls { margin-top: 15px; display: flex; gap: 15px; background: #1e1e1e; padding: 10px 20px; border-radius: 20px; display: none; }
-        .player-controls button { background: none; border: none; color: white; cursor: pointer; font-size: 16px; }
+        video { width: 80%; max-height: 75%; background-color: black; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5); display: none; }
+        
+        /* New Time & Controls Display */
+        .player-bar { margin-top: 15px; display: flex; flex-direction: column; align-items: center; gap: 10px; display: none; width: 80%; }
+        .time-display { font-family: monospace; font-size: 16px; color: #00a8ff; background: #1e1e1e; padding: 5px 15px; border-radius: 20px; border: 1px solid #333; }
+        .player-controls button { background: #252525; border: 1px solid #444; color: white; cursor: pointer; padding: 8px 20px; border-radius: 6px; font-weight: bold; margin: 0 5px; }
+        .player-controls button:hover { background: #333; border-color: #00a8ff; }
 
-        /* Right Panel - The Brains */
+        /* Right Panel */
         .right-panel { width: 320px; background-color: #181818; border-left: 1px solid #333; display: flex; flex-direction: column; }
-        .right-tabs { display: flex; border-bottom: 1px solid #333; background: #1e1e1e; }
-        .right-tab { flex: 1; text-align: center; padding: 12px 0; cursor: pointer; color: #888; font-size: 14px; font-weight: bold; border-bottom: 2px solid transparent; }
-        .right-tab.active { color: #00a8ff; border-bottom-color: #00a8ff; }
         .properties-content { padding: 20px; overflow-y: auto; flex: 1; }
-
-        /* Custom UI Elements (Sliders, Toggles) */
         .prop-group { margin-bottom: 25px; border-bottom: 1px solid #2a2a2a; padding-bottom: 15px; }
         .prop-group label { display: flex; justify-content: space-between; font-size: 13px; color: #bbb; margin-bottom: 10px; }
         input[type="range"] { width: 100%; cursor: pointer; accent-color: #00a8ff; }
-        
-        /* iOS Style Toggle Switch */
-        .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #444; transition: .4s; border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: #00a8ff; }
-        input:checked + .slider:before { transform: translateX(20px); }
 
-        /* Animation Grid */
-        .anim-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-        .anim-box { background: #252525; height: 60px; border-radius: 6px; display: flex; justify-content: center; align-items: center; font-size: 11px; cursor: pointer; border: 1px solid #333; text-align: center; padding: 5px; }
-        .anim-box:hover { border-color: #00a8ff; }
-
-        /* Bottom Timeline */
-        .timeline { height: 260px; background-color: #1a1a1a; border-top: 1px solid #333; display: flex; flex-direction: column; }
-        .timeline-tools { padding: 10px 20px; background: #1e1e1e; display: flex; gap: 15px; border-bottom: 1px solid #333; }
+        /* Bottom Timeline (The Real Magic) */
+        .timeline { height: 300px; background-color: #1a1a1a; border-top: 1px solid #333; display: flex; flex-direction: column; }
+        .timeline-tools { padding: 10px 20px; background: #1e1e1e; display: flex; gap: 15px; border-bottom: 1px solid #333; align-items: center; }
         .timeline-tools button { background: transparent; border: 1px solid #555; color: white; padding: 6px 15px; border-radius: 4px; cursor: pointer; font-size: 13px; }
-        .timeline-tools button:hover { background: #333; }
+        .timeline-tools button:hover { background: #333; color: #00a8ff; border-color: #00a8ff; }
         
-        .timeline-tracks { flex: 1; padding: 10px; overflow-x: auto; overflow-y: auto; background: #151515; position: relative; }
-        .time-ruler { height: 20px; border-bottom: 1px solid #333; margin-bottom: 10px; background-image: repeating-linear-gradient(to right, transparent, transparent 49px, #555 49px, #555 50px); }
+        .timeline-tracks { flex: 1; padding: 20px 10px; overflow-x: auto; background: #151515; position: relative; cursor: text; }
         
-        /* Video Clip in Timeline */
-        .video-track { height: 60px; background: #252525; border-radius: 5px; margin-bottom: 10px; display: flex; align-items: center; position: relative; }
-        .video-clip { height: 100%; background: #005a9e; border-radius: 4px; border: 2px solid #00a8ff; position: absolute; left: 50px; width: 300px; display: flex; align-items: center; padding-left: 10px; font-size: 12px; cursor: grab; display: none; }
-        
-        /* Sub Tabs (Basic, Curve, etc) */
-        .sub-tabs { display: flex; background: #252525; border-radius: 6px; margin-bottom: 15px; overflow: hidden; }
-        .sub-tab { flex: 1; text-align: center; padding: 8px; font-size: 12px; cursor: pointer; }
-        .sub-tab.active { background: #333; color: white; font-weight: bold; }
+        /* Playhead (Red Line) */
+        .playhead { position: absolute; top: 0; bottom: 0; left: 0%; width: 2px; background-color: #ff3b30; z-index: 10; pointer-events: none; }
+        .playhead::before { content: ''; position: absolute; top: 0; left: -5px; width: 12px; height: 15px; background: #ff3b30; border-radius: 2px; }
+
+        /* Video Tracks & Clips */
+        .track-container { position: relative; height: 60px; margin-bottom: 10px; background: #222; border-radius: 5px; width: 100%; }
+        .video-clip { position: absolute; top: 0; left: 0; height: 100%; width: 100%; background: linear-gradient(90deg, #005a9e, #0078d4); border-radius: 4px; border: 2px solid transparent; display: flex; align-items: center; padding-left: 10px; font-size: 12px; font-weight: bold; overflow: hidden; display: none; cursor: pointer; transition: border 0.2s; box-sizing: border-box; }
+        .video-clip:hover { border: 2px solid rgba(255,255,255,0.5); }
+        .video-clip.selected { border: 2px solid white; box-shadow: 0 0 10px rgba(255,255,255,0.3); }
+        .clip-thumbnail { height: 100%; width: auto; opacity: 0.5; position: absolute; right: 0; mix-blend-mode: overlay; }
     </style>
 </head>
 <body>
 
-    <!-- Top Header -->
     <header>
         <div class="logo">🚀 NextGen</div>
-        <button class="export-btn">Export</button>
+        <button class="export-btn">Export HD</button>
     </header>
 
     <div class="workspace">
-        <!-- 1. Left Vertical Icons -->
         <div class="left-panel">
             <div class="tool-icon active">📁<br>Media</div>
-            <div class="tool-icon">🎵<br>Audio</div>
-            <div class="tool-icon">T<br>Text</div>
             <div class="tool-icon">✨<br>Effects</div>
-            <div class="tool-icon">🤖<br>AI Tools</div>
         </div>
 
-        <!-- 2. Media Panel -->
         <div class="media-panel">
-            <h3 style="margin-top:0; font-size:16px;">Project Media</h3>
+            <h3 style="margin-top:0;">Project Files</h3>
             <div class="upload-box">
                 <p style="font-size: 30px; margin: 0;">+</p>
-                <p>Drag & drop or <label for="uploadVideo">browse</label></p>
+                <p><label for="uploadVideo">Click to Add Video</label></p>
                 <input type="file" id="uploadVideo" accept="video/*" style="display: none;">
             </div>
         </div>
 
-        <!-- 3. Center Video Preview -->
         <div class="center-preview">
-            <p id="noVideoText" style="color: #666;">No media selected. Upload a video.</p>
-            <video id="videoPlayer" controls></video>
+            <p id="noVideoText" style="color: #666;">Waiting for media...</p>
+            <video id="videoPlayer"></video>
             
-            <div class="player-controls" id="playerControls">
-                <button onclick="document.getElementById('videoPlayer').play()">▶ Play</button>
-                <button onclick="document.getElementById('videoPlayer').pause()">⏸ Pause</button>
+            <!-- Real Controls & Timecode -->
+            <div class="player-bar" id="playerBar">
+                <div class="time-display" id="timeDisplay">00:00 / 00:00</div>
+                <div class="player-controls">
+                    <button onclick="togglePlay()" id="playBtn">▶ Play</button>
+                </div>
             </div>
         </div>
 
-        <!-- 4. Right Panel (Properties - Speed, Audio, Animations) -->
         <div class="right-panel">
-            <div class="right-tabs">
-                <div class="right-tab active" onclick="switchTab('videoTab')">Video</div>
-                <div class="right-tab" onclick="switchTab('speedTab')">Speed</div>
-                <div class="right-tab" onclick="switchTab('audioTab')">Audio</div>
-                <div class="right-tab" onclick="switchTab('animTab')">Animation</div>
-            </div>
-
-            <!-- Tab 1: Video Basic -->
-            <div class="properties-content" id="videoTab">
+            <div class="properties-content">
+                <h3 style="margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px;">Adjustments</h3>
+                <div class="prop-group">
+                    <label><span>Speed</span> <span id="speedVal">1x</span></label>
+                    <input type="range" min="0.1" max="4" step="0.1" value="1" oninput="document.getElementById('speedVal').innerText = this.value + 'x'; document.getElementById('videoPlayer').playbackRate = this.value;">
+                </div>
                 <div class="prop-group">
                     <label><span>Scale</span> <span id="scaleVal">100%</span></label>
                     <input type="range" min="10" max="200" value="100" oninput="document.getElementById('scaleVal').innerText = this.value + '%'; document.getElementById('videoPlayer').style.transform = `scale(${this.value/100})`;">
                 </div>
                 <div class="prop-group">
-                    <label><span>Opacity</span> <span id="opacityVal">100%</span></label>
-                    <input type="range" min="0" max="100" value="100" oninput="document.getElementById('opacityVal').innerText = this.value + '%'; document.getElementById('videoPlayer').style.opacity = this.value/100;">
-                </div>
-                <div class="prop-group" style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 14px;">Smart Background Removal ✨</span>
-                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                </div>
-                <div class="prop-group" style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 14px;">Auto Reframe 🤖</span>
-                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                </div>
-            </div>
-
-            <!-- Tab 2: Speed (From your screenshot) -->
-            <div class="properties-content" id="speedTab" style="display: none;">
-                <div class="sub-tabs">
-                    <div class="sub-tab active">Normal</div>
-                    <div class="sub-tab">Curve</div>
-                </div>
-                <div class="prop-group">
-                    <label><span>Speed</span> <span id="speedVal">1x</span></label>
-                    <input type="range" min="0.1" max="5" step="0.1" value="1" oninput="document.getElementById('speedVal').innerText = this.value + 'x'; document.getElementById('videoPlayer').playbackRate = this.value;">
-                </div>
-                <div class="prop-group" style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 14px;">Pitch (Keep Audio Normal)</span>
-                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                </div>
-                <div class="prop-group" style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 14px;">Smooth slow-mo 💎</span>
-                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                </div>
-            </div>
-
-            <!-- Tab 3: Audio (From your screenshot) -->
-            <div class="properties-content" id="audioTab" style="display: none;">
-                <div class="sub-tabs">
-                    <div class="sub-tab active">Basic</div>
-                    <div class="sub-tab">Voice Changer</div>
-                </div>
-                <div class="prop-group">
                     <label><span>Volume</span> <span id="volVal">100%</span></label>
                     <input type="range" min="0" max="100" value="100" oninput="document.getElementById('volVal').innerText = this.value + '%'; document.getElementById('videoPlayer').volume = this.value/100;">
                 </div>
-                <div class="prop-group">
-                    <label><span>Fade-in duration</span> <span>0.0s</span></label>
-                    <input type="range" min="0" max="10" value="0">
-                </div>
-                <div class="prop-group" style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 14px;">Noise Reduction 💎</span>
-                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                </div>
+                <p style="color:#777; font-size:12px;">Select the clip on the timeline to enable more tools.</p>
             </div>
-
-            <!-- Tab 4: Animations (From your screenshot) -->
-            <div class="properties-content" id="animTab" style="display: none;">
-                <div class="sub-tabs">
-                    <div class="sub-tab active">In</div>
-                    <div class="sub-tab">Out</div>
-                    <div class="sub-tab">Combo</div>
-                </div>
-                <div class="anim-grid">
-                    <div class="anim-box" style="border-color: #00a8ff;">None</div>
-                    <div class="anim-box">Fade In</div>
-                    <div class="anim-box">Mini Zoom</div>
-                    <div class="anim-box">Slide Right</div>
-                    <div class="anim-box">Spin</div>
-                    <div class="anim-box">Blur In</div>
-                </div>
-            </div>
-
         </div>
     </div>
 
-    <!-- 5. Bottom Timeline -->
+    <!-- Interactive Timeline -->
     <div class="timeline">
         <div class="timeline-tools">
-            <button>↩ Undo</button>
-            <button>✂ Split (Ctrl+B)</button>
-            <button>🗑 Delete</button>
-            <button>🎤 Record Voiceover</button>
+            <button onclick="splitClip()">✂ Split (Cut)</button>
+            <button onclick="deleteClip()">🗑 Delete</button>
+            <span style="color: #666; font-size: 12px; margin-left: auto;">Use timeline to scrub video</span>
         </div>
-        <div class="timeline-tracks">
-            <div class="time-ruler"></div>
-            <!-- Video Track -->
-            <div class="video-track">
-                <span style="position:absolute; left: 10px; color: #666; font-size: 12px;">V1</span>
-                <!-- Yeh actual video clip hai jo upload karne par show hogi -->
-                <div class="video-clip" id="timelineClip">
-                    🎥 My_Video.mp4
+        <div class="timeline-tracks" id="trackArea">
+            <!-- The Red Moving Line -->
+            <div class="playhead" id="playhead"></div>
+            
+            <div class="track-container" id="mainTrack">
+                <div class="video-clip selected" id="timelineClip" onclick="selectClip(this)">
+                    <span id="clipName">🎬 Clip 1</span>
                 </div>
-            </div>
-            <!-- Audio Track -->
-            <div class="video-track" style="height: 40px; background: #1a1a1a;">
-                <span style="position:absolute; left: 10px; color: #666; font-size: 12px;">A1</span>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript - Brain of the UI -->
     <script>
         const uploader = document.getElementById('uploadVideo');
         const player = document.getElementById('videoPlayer');
-        const noVideoText = document.getElementById('noVideoText');
-        const playerControls = document.getElementById('playerControls');
+        const playerBar = document.getElementById('playerBar');
         const timelineClip = document.getElementById('timelineClip');
+        const playhead = document.getElementById('playhead');
+        const timeDisplay = document.getElementById('timeDisplay');
+        const trackArea = document.getElementById('trackArea');
+        const playBtn = document.getElementById('playBtn');
 
-        // Video Upload Logic
+        // File Upload Logic
         uploader.addEventListener('change', function(event) {
             const file = event.target.files[0];
             if (file) {
-                // Video Play preview me set karo
-                const fileURL = URL.createObjectURL(file);
-                player.src = fileURL;
+                player.src = URL.createObjectURL(file);
                 player.style.display = 'block';
-                noVideoText.style.display = 'none';
-                playerControls.style.display = 'flex';
+                document.getElementById('noVideoText').style.display = 'none';
+                playerBar.style.display = 'flex';
                 
-                // Timeline me clip show karo
                 timelineClip.style.display = 'flex';
-                timelineClip.innerText = '🎥 ' + file.name;
-                
-                player.play();
+                document.getElementById('clipName').innerText = '🎬 ' + file.name;
             }
         });
 
-        // Tab Switching Logic (Right Panel)
-        function switchTab(tabId) {
-            // Hide all tabs
-            document.getElementById('videoTab').style.display = 'none';
-            document.getElementById('speedTab').style.display = 'none';
-            document.getElementById('audioTab').style.display = 'none';
-            document.getElementById('animTab').style.display = 'none';
+        // Toggle Play/Pause
+        function togglePlay() {
+            if (player.paused) {
+                player.play();
+                playBtn.innerText = "⏸ Pause";
+            } else {
+                player.pause();
+                playBtn.innerText = "▶ Play";
+            }
+        }
+
+        // Playhead & Timecode Sync Logic (Real Editor Feel)
+        player.addEventListener('timeupdate', () => {
+            if(!player.duration) return;
             
-            // Remove active class from all buttons
-            let tabs = document.getElementsByClassName('right-tab');
-            for(let i=0; i<tabs.length; i++) {
-                tabs[i].classList.remove('active');
+            // Move Red Line
+            const progress = (player.currentTime / player.duration) * 100;
+            playhead.style.left = progress + '%';
+
+            // Update 00:00 Timer
+            timeDisplay.innerText = formatTime(player.currentTime) + " / " + formatTime(player.duration);
+            
+            // Revert Play button when video ends
+            if(player.ended) playBtn.innerText = "▶ Play";
+        });
+
+        // Format Seconds to MM:SS
+        function formatTime(seconds) {
+            if(isNaN(seconds)) return "00:00";
+            const min = Math.floor(seconds / 60).toString().padStart(2, '0');
+            const sec = Math.floor(seconds % 60).toString().padStart(2, '0');
+            return `${min}:${sec}`;
+        }
+
+        // Timeline Scrubbing (Click to Jump)
+        trackArea.addEventListener('click', (e) => {
+            if(!player.duration) return;
+            // Agar clip par click kiya hai toh aage code skip mat karo, scrub karo
+            const rect = trackArea.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const percentage = clickX / rect.width;
+            
+            // Update video time
+            player.currentTime = percentage * player.duration;
+        });
+
+        // Highlight Clip when clicked
+        function selectClip(element) {
+            element.classList.add('selected');
+        }
+
+        // Split (Cut) Logic! (Visual Magic)
+        function splitClip() {
+            if(!player.duration) {
+                alert("Please upload a video first!");
+                return;
             }
             
-            // Show selected tab
-            document.getElementById(tabId).style.display = 'block';
-            event.target.classList.add('active');
+            const progress = (player.currentTime / player.duration) * 100;
+            
+            // Puraani clip ko chota karo
+            timelineClip.style.width = progress + '%';
+            timelineClip.style.borderRight = '2px solid #ff3b30'; // Lal nishan ke cut lag gaya
+            timelineClip.classList.remove('selected');
+
+            // Nayi clip create karo (Cut ke aage ka hissa)
+            const newClip = document.createElement('div');
+            newClip.className = 'video-clip selected'; // Nayi clip automatically select ho jayegi
+            newClip.style.display = 'flex';
+            newClip.style.left = progress + '%';
+            newClip.style.width = (100 - progress) + '%';
+            newClip.innerHTML = '<span>🎬 Cut Part</span>';
+            newClip.onclick = function() { selectClip(this) };
+            
+            document.getElementById('mainTrack').appendChild(newClip);
+        }
+
+        // Fake Delete for feel
+        function deleteClip() {
+            alert("This feature will remove the selected block in the next advanced update!");
         }
     </script>
 </body>
